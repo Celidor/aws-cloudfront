@@ -1,0 +1,7 @@
+terraform {
+  backend "s3" {
+    bucket = "TERRAFORM-STATE-BUCKET-NAME"
+    key    = "aws-cloudfront"
+    region = "us-east-1"
+  }
+}
