@@ -10,3 +10,6 @@
 # Credentials
 backend.tf
 *.tfvars
+
+#MacOS
+.DS_Store
