@@ -6,7 +6,7 @@
 * CloudFront Distribution
 * CloudFront Origin Access Identity
 * S3 bucket policy to allow access to CloudFront 
-* CloudFront function to add security headers
+* CloudFront custom security header policy
 
 ![](images/web-app.png)
 

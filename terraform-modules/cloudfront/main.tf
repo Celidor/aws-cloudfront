@@ -2,14 +2,6 @@ resource "aws_cloudfront_origin_access_identity" "website" {
   comment = "Allows access to ${var.bucket_name} S3 bucket"
 }
 
-resource "aws_cloudfront_function" "security_headers" {
-  name    = "headers"
-  runtime = "cloudfront-js-1.0"
-  comment = "Add Security Headers"
-  publish = true
-  code    = file("${path.module}/code/headers.js")
-}
-
 resource "aws_cloudfront_distribution" "website" {
   origin {
     domain_name = var.bucket_regional_domain_name
@@ -39,10 +31,7 @@ resource "aws_cloudfront_distribution" "website" {
       }
     }
 
-    function_association {
-    event_type   = "viewer-response"
-    function_arn = aws_cloudfront_function.security_headers.arn
-  }
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.security_header_policy.id
 
     min_ttl                = 0
     default_ttl            = 86400
@@ -61,9 +50,9 @@ resource "aws_cloudfront_distribution" "website" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = var.certificate_arn
+    acm_certificate_arn      = var.certificate_arn
     minimum_protocol_version = "TLSv1.2_2021"
-    ssl_support_method = "sni-only"
+    ssl_support_method       = "sni-only"
   }
 
   tags = var.tags
