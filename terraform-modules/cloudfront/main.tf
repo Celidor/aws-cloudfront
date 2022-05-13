@@ -5,7 +5,7 @@ resource "aws_cloudfront_origin_access_identity" "website" {
 resource "aws_cloudfront_distribution" "website" {
   origin {
     domain_name = var.bucket_regional_domain_name
-    origin_id   = "${var.project}-${local.env}"
+    origin_id   = "${local.domain_ref}-${local.env}"
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.website.cloudfront_access_identity_path
     }
@@ -13,7 +13,7 @@ resource "aws_cloudfront_distribution" "website" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "${var.project}-${local.env}"
+  comment             = "${local.domain_ref}-${local.env}"
   default_root_object = "index.html"
 
   aliases = ["${var.domain_prefix}.${var.base_domain}"]
@@ -21,7 +21,7 @@ resource "aws_cloudfront_distribution" "website" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${var.project}-${local.env}"
+    target_origin_id = "${local.domain_ref}-${local.env}"
 
     forwarded_values {
       query_string = false

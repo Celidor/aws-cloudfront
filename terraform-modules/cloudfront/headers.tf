@@ -1,5 +1,5 @@
 resource "aws_cloudfront_response_headers_policy" "security_header_policy" {
-  name = "security-headers-policy"
+  name = "security-headers-${local.domain_ref}"
 
   security_headers_config {
 

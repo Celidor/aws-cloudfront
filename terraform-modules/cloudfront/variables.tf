@@ -1,7 +1,3 @@
-variable "project" {
-  description = "The name of the project"
-}
-
 variable "bucket_name" {
   description = "Name of origin S3 bucket"
 }

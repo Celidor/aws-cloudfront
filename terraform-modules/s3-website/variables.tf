@@ -2,10 +2,6 @@ variable "region" {
   description = "AWS region for S3 bucket"
 }
 
-variable "project" {
-  description = "Name of project"
-}
-
 variable "bucket_name" {
   description = "Name of S3 bucket"
 }

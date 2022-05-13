@@ -1,6 +1,5 @@
 module "s3-website" {
   source                                = "./terraform-modules/s3-website"
-  project                               = var.project
   region                                = var.region
   bucket_name                           = local.bucket_name
   cloudfront_origin_access_identity_arn = module.cloudfront.cloudfront_origin_access_identity_arn
@@ -16,7 +15,6 @@ module "certificate-manager" {
 
 module "cloudfront" {
   source                      = "./terraform-modules/cloudfront"
-  project                     = var.project
   bucket_name                 = local.bucket_name
   bucket_regional_domain_name = local.bucket_regional_domain_name
   base_domain                 = var.base_domain

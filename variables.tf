@@ -1,8 +1,3 @@
-variable "project" {
-  description = "abbreviation for the project, forms first part of resource names"
-  default     = "aws-cloudfront"
-}
-
 variable "region" {
   description = "AWS region, must be us-east-1 for certificate manager to work with CloudFront"
   default     = "us-east-1"
