@@ -44,8 +44,8 @@ resource "aws_cloudfront_distribution" "website" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE"]
+      restriction_type = "blacklist"
+      locations        = ["CN", "IR", "KP", "RU"]
     }
   }
 
