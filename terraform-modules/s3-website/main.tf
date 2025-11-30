@@ -1,20 +1,25 @@
 resource "aws_s3_bucket" "website_bucket" {
   bucket = var.bucket_name
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+  tags = var.tags
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "website_bucket" {
+  bucket = aws_s3_bucket.website_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
     }
   }
+}
 
-  website {
-    index_document = "index.html"
-    routing_rules  = var.routing_rules
+resource "aws_s3_bucket_website_configuration" "website_bucket" {
+  bucket = aws_s3_bucket.website_bucket.id
+
+  index_document {
+    suffix = "index.html"
   }
-
-  tags = var.tags
 }
 
 resource "null_resource" "remove_and_upload_to_s3" {
