@@ -10,10 +10,6 @@ variable "routing_rules" {
   default = ""
 }
 
-variable "cloudfront_origin_access_identity_arn" {
-  description = "CloudFront Origin Access Identity ARN"
-}
-
 variable "tags" {
   description = "Optional tags"
 }

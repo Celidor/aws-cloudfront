@@ -4,8 +4,8 @@
 * Route53 DNS CNAME
 * Certificate Manager
 * CloudFront Distribution
-* CloudFront Origin Access Identity
-* S3 bucket policy to allow access to CloudFront 
+* CloudFront Origin Access Control
+* S3 bucket policy to only allow access to CloudFront 
 * CloudFront custom security header policy
 
 ![](images/web-app.png)
